@@ -1,0 +1,180 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        01/01/102  01:23:11  PAGE  1
+WIN16 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE DD.OBJ  to  DD.ABS PL(60) PW(80) RS(128) ix 
+
+
+INPUT MODULES INCLUDED
+  DD.OBJ(DD)
+
+
+LINK MAP OF MODULE: DD.ABS (DD)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+             0003H      00FDH                    *** GAP ***
+    CODE     0100H      015CH     ABSOLUTE       
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  015FH (351)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: DD.ABS (DD)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR DD.ABS(DD)
+----------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             DD
+	C:01EEH            SYMBOL             WRSTR
+	C:0230H            SYMBOL             WTSEC
+	C:0226H            SYMBOL             WRCHAR
+	C:0123H            SYMBOL             STRING2
+	C:0100H            SYMBOL             STRING1A
+	C:0136H            SYMBOL             STRING3
+	C:0111H            SYMBOL             STRING1B
+	C:023BH            SYMBOL             WTMS
+	C:0144H            SYMBOL             STRING4
+	C:0174H            SYMBOL             LOOP2
+	C:015AH            SYMBOL             STRING5
+	C:0229H            SYMBOL             WTBUSY
+	C:0204H            SYMBOL             WRSLOW
+	C:0168H            SYMBOL             START
+	C:0206H            SYMBOL             WRSLW1
+	C:021FH            SYMBOL             WRSLW2
+	C:01F0H            SYMBOL             WRSTR1
+	C:0203H            SYMBOL             WRSTR2
+	C:016DH            SYMBOL             LOOP
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          01/01/102  01:23:11  PAGE  2
+
+	C:0242H            SYMBOL             WTMS1
+	C:024DH            SYMBOL             WTMS2
+	C:0220H            SYMBOL             WRCMD
+	C:0000H            LINE#              22
+	C:0168H            LINE#              42
+	C:016AH            LINE#              43
+	C:016DH            LINE#              45
+	C:016FH            LINE#              46
+	C:0172H            LINE#              48
+	C:0174H            LINE#              50
+	C:0177H            LINE#              51
+	C:017AH            LINE#              53
+	C:017DH            LINE#              54
+	C:0180H            LINE#              56
+	C:0182H            LINE#              57
+	C:0185H            LINE#              59
+	C:0188H            LINE#              60
+	C:018BH            LINE#              62
+	C:018EH            LINE#              63
+	C:0191H            LINE#              65
+	C:0193H            LINE#              66
+	C:0196H            LINE#              68
+	C:0198H            LINE#              70
+	C:019BH            LINE#              71
+	C:019EH            LINE#              73
+	C:01A1H            LINE#              74
+	C:01A4H            LINE#              76
+	C:01A6H            LINE#              77
+	C:01A9H            LINE#              79
+	C:01ACH            LINE#              80
+	C:01AFH            LINE#              82
+	C:01B2H            LINE#              83
+	C:01B5H            LINE#              85
+	C:01B7H            LINE#              86
+	C:01BAH            LINE#              88
+	C:01BDH            LINE#              89
+	C:01C0H            LINE#              91
+	C:01C2H            LINE#              92
+	C:01C5H            LINE#              94
+	C:01C8H            LINE#              95
+	C:01CBH            LINE#              97
+	C:01CDH            LINE#              98
+	C:01D0H            LINE#              100
+	C:01D3H            LINE#              101
+	C:01D6H            LINE#              103
+	C:01D8H            LINE#              104
+	C:01DBH            LINE#              106
+	C:01DEH            LINE#              107
+	C:01E1H            LINE#              108
+	C:01E4H            LINE#              109
+	C:01E7H            LINE#              110
+	C:01E9H            LINE#              111
+	C:01ECH            LINE#              115
+	C:01EEH            LINE#              119
+	C:01F0H            LINE#              120
+	C:01F1H            LINE#              121
+	C:01F2H            LINE#              122
+	C:01F4H            LINE#              123
+	C:01F5H            LINE#              124
+	C:01F8H            LINE#              125
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          01/01/102  01:23:11  PAGE  3
+
+	C:01F9H            LINE#              126
+	C:01FBH            LINE#              127
+	C:01FDH            LINE#              128
+	C:01FFH            LINE#              129
+	C:0201H            LINE#              130
+	C:0203H            LINE#              131
+	C:0204H            LINE#              134
+	C:0206H            LINE#              135
+	C:0207H            LINE#              136
+	C:0208H            LINE#              137
+	C:020AH            LINE#              138
+	C:020BH            LINE#              139
+	C:020EH            LINE#              140
+	C:020FH            LINE#              141
+	C:0211H            LINE#              142
+	C:0213H            LINE#              143
+	C:0216H            LINE#              144
+	C:0219H            LINE#              145
+	C:021BH            LINE#              146
+	C:021DH            LINE#              147
+	C:021FH            LINE#              148
+	C:0220H            LINE#              152
+	C:0222H            LINE#              153
+	C:0223H            LINE#              154
+	C:0226H            LINE#              158
+	C:0228H            LINE#              159
+	C:0229H            LINE#              162
+	C:022BH            LINE#              163
+	C:022CH            LINE#              164
+	C:022FH            LINE#              165
+	C:0230H            LINE#              168
+	C:0232H            LINE#              169
+	C:0235H            LINE#              170
+	C:0237H            LINE#              171
+	C:0238H            LINE#              172
+	C:023AH            LINE#              173
+	C:023BH            LINE#              176
+	C:023EH            LINE#              177
+	C:0241H            LINE#              178
+	C:0242H            LINE#              179
+	C:0245H            LINE#              180
+	C:0248H            LINE#              181
+	C:024BH            LINE#              182
+	C:024DH            LINE#              183
+	C:0250H            LINE#              184
+	C:0252H            LINE#              185
+	C:0254H            LINE#              186
+	C:0255H            LINE#              187
+	C:0257H            LINE#              188
+	C:0259H            LINE#              189
+	C:025BH            LINE#              190
+	-------            ENDMOD             DD
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

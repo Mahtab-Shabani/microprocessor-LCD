@@ -1,0 +1,302 @@
+MACRO ASSEMBLER DD                                         01/01/102 01:23:11 PAGE     1
+
+
+WIN16 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\MICRO\LCD\DD.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\MICRO\LCD\DD.A51 OJ(C:\MICRO\LCD\DD.OBJ) PIN(C:\FSI\INC) EP LINES XR DB PL(60) PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    ; LCD DISPLAY DRIVER DEMO.
+                         2    ; TIMING CODE ASSUMES 1.2MHZ CLOCK
+                         3    
+                         4    ;LCD REGISTERS ADDRESSES
+  0000                   5    LCD_CMD_WR	EQU 	0
+  0001                   6    LCD_DATA_WR	EQU	1
+  0002                   7    LCD_BUSY_RD	EQU	2
+  0003                   8    LCD_DATA_RD	EQU	3
+                         9    
+                        10    ;LCD COMMANDS
+  0001                  11    LCD_CLS		EQU	1
+  0002                  12    LCD_HOME	EQU	2
+  0004                  13    LCD_SETMODE	EQU	4
+  0008                  14    LCD_SETVISIBLE	EQU	8
+  0010                  15    LCD_SHIFT	EQU	16
+  0020                  16    LCD_SETFUNCTION	EQU	32
+  0040                  17    LCD_SETCGADDR	EQU	64
+  0080                  18    LCD_SETDDADDR	EQU	128
+                        19    
+                        20    ;RESET VECTOR
+  0000                  21    	ORG 0000H
+0000    020168          22    	JMP START
+                        23    
+                        24    
+                        25    ;START OF THE PROGRAM
+  0100                  26    	ORG 0100H
+                        27    
+0100    2A2A2A70        28    STRING1A:  DB '***payam noor***'
+0104    6179616D
+0108    206E6F6F
+010C    722A2A2A
+0110    00              29    	 DB 0
+0111    2A2A2A70        30    STRING1B:  DB '***payam noor****'
+0115    6179616D
+0119    206E6F6F
+011D    722A2A2A
+0121    2A
+0122    00              31    	 DB 0
+0123    20647269        32    STRING2:  DB ' driven by Babaei '
+0127    76656E20
+012B    62792042
+012F    61626165
+0133    6920
+0135    00              33    	DB 0
+                        34    
+0136    20616E64        35    STRING3:  DB ' and student '
+013A    20737475
+013E    64656E74
+0142    20
+0143    00              36    	DB 0
+0144    20383035        37    STRING4:  DB ' 8051micro controler!'
+0148    316D6963
+014C    726F2063
+0150    6F6E7472
+0154    6F6C6572
+0158    21
+0159    00              38    	DB 0
+015A    20202047        39    STRING5:  DB '   Good bye  '
+015E    6F6F6420
+0162    62796520
+0166    20
+0167    00              40    	DB 0	
+                        41    
+0168    7438            42    START:  	MOV A,#038H
+016A    120220          43    	CALL WRCMD
+                        44    
+016D    740E            45    LOOP:   MOV A , # 8 + 6 
+016F    120220          46    	CALL WRCMD
+                        47    
+0172    7F02            48    	MOV R7,#2
+                        49    LOOP2:   
+0174    900100          50    	MOV DPTR,#STRING1A
+                        51    	CALL WRSTR
+MACRO ASSEMBLER DD                               01/01/102 01:23:11 PAGE     2
+0177    1201EE       
+                        52    
+017A    9000C8          53     	MOV DPTR,#200
+017D    12023B          54     	CALL WTMS
+                        55    
+0180    7401            56    MOV A , # 1 
+0182    120220          57    	CALL WRCMD
+                        58    
+0185    900111          59    	MOV DPTR,#STRING1B
+0188    1201EE          60    	CALL WRSTR
+                        61    
+018B    9000C8          62     	MOV DPTR,#200
+018E    12023B          63     	CALL WTMS
+                        64    
+0191    7401            65    MOV A , # 1 
+0193    120220          66    	CALL WRCMD
+                        67    
+0196    DFDC            68    	DJNZ R7,LOOP2
+                        69    
+0198    900100          70    	MOV DPTR,#STRING1A
+019B    1201EE          71    	CALL WRSTR
+                        72    
+019E    900190          73     	MOV DPTR,#400
+01A1    12023B          74     	CALL WTMS
+                        75    
+01A4    74C0            76    MOV A , # 128 + 64 
+01A6    120220          77    	CALL WRCMD
+                        78    
+01A9    900123          79    	MOV DPTR,#STRING2
+01AC    120204          80    	CALL WRSLOW
+                        81    
+01AF    9000C8          82     	MOV DPTR,#200
+01B2    12023B          83     	CALL WTMS
+                        84    
+01B5    7401            85    MOV A , # 1 
+01B7    120220          86    	CALL WRCMD
+                        87    
+01BA    900136          88    	MOV DPTR,#STRING3
+01BD    120204          89    	CALL WRSLOW
+                        90    
+01C0    74C0            91    MOV A , # 128 + 64 
+01C2    120220          92    	CALL WRCMD
+                        93    
+01C5    900144          94    	MOV DPTR,#STRING4
+01C8    120204          95    	CALL WRSLOW
+                        96    
+01CB    740F            97    MOV A , # 8 + 07 
+01CD    120220          98    	CALL WRCMD
+                        99    
+01D0    9007D0         100     	MOV DPTR,#2000
+01D3    12023B         101     	CALL WTMS
+                       102    
+01D6    7401           103    MOV A , # 1 
+01D8    120220         104    	CALL WRCMD
+                       105    	
+01DB    90015A         106    	MOV DPTR,#STRING5
+01DE    120204         107    	CALL WRSLOW
+01E1    9007D0         108    	MOV DPTR,#2000
+                       109     	CALL WTMS
+MACRO ASSEMBLER DD                               01/01/102 01:23:11 PAGE     3
+01E4    12023B       
+01E7    7401           110    MOV A , # 1 
+01E9    120220         111    	CALL WRCMD
+                       112    
+                       113    
+                       114    
+01EC    216D           115    	JMP LOOP
+                       116    
+                       117    
+                       118    ;SUB ROUTINE TO WRITE NULL TERMINATED STRING AT DPTR IN PROGRAM RAM.
+01EE    7801           119    WRSTR:   MOV R0 , # 1 
+01F0    E4             120    WRSTR1:  	CLR A
+01F1    93             121    	MOVC A,@A+DPTR
+01F2    600F           122    	JZ WRSTR2
+01F4    F2             123    	MOVX @R0,A
+01F5    120229         124    	CALL WTBUSY
+01F8    A3             125    	INC DPTR
+01F9    C082           126    	PUSH DPL
+01FB    C083           127    	PUSH DPH
+01FD    D083           128    	POP DPH
+01FF    D082           129    	POP DPL	
+0201    80ED           130    	JMP WRSTR1
+0203    22             131    WRSTR2:  	RET
+                       132    
+                       133    ;SUB ROUTINE TO WRITE NULL TERMINATED STRING AT DPTR IN PROGRAM RAM. SLOWLY
+0204    7801           134    WRSLOW:   MOV R0 , # 1 
+0206    E4             135    WRSLW1:  	CLR A
+0207    93             136    	MOVC A,@A+DPTR
+0208    6015           137    	JZ WRSLW2
+020A    F2             138    	MOVX @R0,A
+020B    120229         139    	CALL WTBUSY
+020E    A3             140    	INC DPTR
+020F    C082           141    	PUSH DPL
+0211    C083           142    	PUSH DPH
+0213    900064         143            MOV DPTR,#100
+0216    12023B         144            CALL WTMS
+0219    D083           145    	POP DPH
+021B    D082           146    	POP DPL	
+021D    80E7           147    	JMP WRSLW1
+021F    22             148    WRSLW2:  	RET
+                       149    
+                       150    
+                       151    ;SUB ROUTINE TO WRITE COMMAND:
+0220    7800           152    WRCMD:   MOV R0 , # 0 
+0222    F2             153    	MOVX @R0,A
+0223    020229         154    	JMP WTBUSY
+                       155    
+                       156    
+                       157    ;SUB ROUTINE TO WRITE CHARACTER:
+0226    7801           158    WRCHAR:   MOV R0 , # 1 
+0228    F2             159    	MOVX @R0,A
+                       160    
+                       161    ;SUBROUTINE TO WAIT FOR BUSY CLEAR
+0229    7902           162    WTBUSY:   MOV R1 , # 2 
+022B    E3             163    	MOVX A,@R1
+022C    20E7FA         164    	JB ACC.7,WTBUSY
+022F    22             165    	RET
+                       166    
+                       167    ;WAIT FOR NUMBER OF SECONDS IN A
+MACRO ASSEMBLER DD                               01/01/102 01:23:11 PAGE     4
+                     
+0230    C0E0           168    WTSEC:  	PUSH ACC
+0232    12023B         169    	CALL WTMS
+0235    D0E0           170    	POP ACC
+0237    14             171    	DEC A
+0238    70F6           172    	JNZ WTSEC
+023A    22             173    	RET
+                       174    
+                       175    ;WAIT FOR NUMBER OF MILLISECONDS IN DPTR
+023B    6382FF         176    WTMS:     XRL DPL,#0FFH			;CAN't do DEC DPTR, so do the loop by forming 2'S COMPLEMENT
+023E    6383FF         177    	XRL DPH,#0FFH			;AND INCREMENTING INSTEAD.
+0241    A3             178    	INC DPTR
+0242    758A9C         179    WTMS1:  	MOV TL0,#09CH			;100 TICKS BEFORE OVERFLOW = 1MS AT 1.2MHZ CLOCK
+0245    758CFF         180    	MOV TH0,#0FFH	
+0248    758901         181    	MOV TMOD,#1			;TIMER 0 MODE 1
+024B    D28C           182    	SETB TCON.4			;TIMER 0 RUNS
+024D    308DFD         183    WTMS2:  	JNB TCON.5,WTMS2	
+0250    C28C           184    	CLR TCON.4			;TIMER 0 STOPS
+0252    C28D           185    	CLR TCON.5
+0254    A3             186    	INC DPTR
+0255    E582           187    	MOV A,DPL
+0257    4583           188    	ORL A,DPH
+0259    70E7           189    	JNZ WTMS1
+025B    22             190    	RET
+                       191    
+                       192    	
+                       193    	END
+MACRO ASSEMBLER DD                                         01/01/102 01:23:11 PAGE     5
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+DPL. . . . . . . .  D ADDR   0082H   A                          126 129 141 146 176 
+                                                                187 
+LCD_SETDDADDR. . .  N NUMB   0080h                              18# 76 91 
+LCD_DATA_RD. . . .  N NUMB   0003h                              8# 
+WRSTR. . . . . . .  C ADDR   01EEH   A                          51 60 71 119# 
+LCD_SETCGADDR. . .  N NUMB   0040h                              17# 
+LCD_SETMODE. . . .  N NUMB   0004h                              13# 
+LCD_SETFUNCTION. .  N NUMB   0020h                              16# 
+WTSEC. . . . . . .  C ADDR   0230H   A                          168# 172 
+WRCHAR . . . . . .  C ADDR   0226H   A                          158# 
+ACC. . . . . . . .  D ADDR   00E0H   A                          164 168 170 
+STRING2. . . . . .  C ADDR   0123H   A                          32# 79 
+STRING1A . . . . .  C ADDR   0100H   A                          28# 50 70 
+STRING3. . . . . .  C ADDR   0136H   A                          35# 88 
+STRING1B . . . . .  C ADDR   0111H   A                          30# 59 
+LCD_BUSY_RD. . . .  N NUMB   0002h                              7# 162 
+WTMS . . . . . . .  C ADDR   023BH   A                          54 63 74 83 101 109 
+                                                                144 169 176# 
+STRING4. . . . . .  C ADDR   0144H   A                          37# 94 
+LOOP2. . . . . . .  C ADDR   0174H   A                          49# 68 
+STRING5. . . . . .  C ADDR   015AH   A                          39# 106 
+LCD_SETVISIBLE . .  N NUMB   0008h                              14# 45 97 
+TH0. . . . . . . .  D ADDR   008CH   A                          180 
+WTBUSY . . . . . .  C ADDR   0229H   A                          124 139 154 162# 
+                                                                164 
+WRSLOW . . . . . .  C ADDR   0204H   A                          80 89 95 107 134# 
+                                                                
+START. . . . . . .  C ADDR   0168H   A                          22 42# 
+LCD_CMD_WR . . . .  N NUMB   0000h                              5# 152 
+WRSLW1 . . . . . .  C ADDR   0206H   A                          135# 147 
+LCD_SHIFT. . . . .  N NUMB   0010h                              15# 
+TL0. . . . . . . .  D ADDR   008AH   A                          179 
+WRSLW2 . . . . . .  C ADDR   021FH   A                          137 148# 
+WRSTR1 . . . . . .  C ADDR   01F0H   A                          120# 130 
+WRSTR2 . . . . . .  C ADDR   0203H   A                          122 131# 
+LCD_CLS. . . . . .  N NUMB   0001h                              11# 56 65 85 103 
+                                                                110 
+LCD_DATA_WR. . . .  N NUMB   0001h                              6# 119 134 158 
+TMOD . . . . . . .  D ADDR   0089H   A                          181 
+TCON . . . . . . .  D ADDR   0088H   A                          182 183 184 185 
+LOOP . . . . . . .  C ADDR   016DH   A                          45# 115 
+LCD_HOME . . . . .  N NUMB   0002h                              12# 
+WTMS1. . . . . . .  C ADDR   0242H   A                          179# 189 
+DPH. . . . . . . .  D ADDR   0083H   A                          127 128 142 145 177 
+                                                                188 
+WTMS2. . . . . . .  C ADDR   024DH   A                          183# 
+WRCMD. . . . . . .  C ADDR   0220H   A                          43 46 57 66 77 86 
+                                                                92 98 104 111 152# 
+                                                                
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    351    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)
